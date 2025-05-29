@@ -1,0 +1,140 @@
+<rect name="Editor">
+
+	<visible> 0 </visible>
+	<locus> 1 </locus>
+	<depth> 1000 </depth>
+
+	<x>
+		<copy src="parent()" trait="_SafeOffsetX" />
+		<sub src="parent()" trait="_MapOffsetX" />
+	</x>
+	<y>
+		<copy src="parent()" trait="_SafeOffsetY" />
+		<sub src="parent()" trait="_MapOffsetY" />
+	</y>
+
+	<_DefaultWidth> 1024 </_DefaultWidth>
+	<_DefaultHeight> 768 </_DefaultHeight>
+
+	<image name="OuterTop">
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="parent()" trait="_DefaultWidth" /> </width>
+		<height> <copy src="grandparent()" trait="_SafeHeight" /> </height>
+		<systemcolor> 2 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="OuterBottom">
+		<x> 0 </x>
+		<y>
+			<copy src="parent()" trait="_DefaultHeight" />
+			<sub src="me()" trait="height" />
+		</y>
+		<width> <copy src="parent()" trait="_DefaultWidth" /> </width>
+		<height> <copy src="grandparent()" trait="_SafeHeight" /> </height>
+		<systemcolor> 2 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="OuterLeft">
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="grandparent()" trait="_SafeWidth" /> </width>
+		<height> <copy src="parent()" trait="_DefaultHeight" /> </height>
+		<systemcolor> 2 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="OuterRight">
+		<x>
+			<copy src="parent()" trait="_DefaultWidth" />
+			<sub src="me()" trait="width" />
+		</x>
+		<y> 0 </y>
+		<width> <copy src="grandparent()" trait="_SafeWidth" /> </width>
+		<height> <copy src="parent()" trait="_DefaultHeight" /> </height>
+		<systemcolor> 2 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="InnerTop">
+		<depth> -1 </depth>
+		<x> 0 </x>
+		<y> <copy src="sibling(OuterTop)" trait="height" /> </y>
+		<width> <copy src="parent()" trait="_DefaultWidth" /> </width>
+		<height> 8 </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="InnerBottom">
+		<depth> -1 </depth>
+		<x> 0 </x>
+		<y>
+			<copy src="sibling(OuterBottom)" trait="y" />
+			<sub src="me()" trait="height" />
+		</y>
+		<width> <copy src="parent()" trait="_DefaultWidth" /> </width>
+		<height> 8 </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="InnerLeft">
+		<depth> -1 </depth>
+		<x> <copy src="sibling(OuterLeft)" trait="width" /> </x>
+		<y> 0 </y>
+		<width> 8 </width>
+		<height> <copy src="parent()" trait="_DefaultHeight" /> </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="InnerRight">
+		<depth> -1 </depth>
+		<x>
+			<copy src="sibling(OuterRight)" trait="x" />
+			<sub src="me()" trait="width" />
+		</x>
+		<y> 0 </y>
+		<width> 8 </width>
+		<height> <copy src="parent()" trait="_DefaultHeight" /> </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="CenterVer">
+		<alpha> 127 </alpha>
+		<depth> -1 </depth>
+		<x>
+			<copy src="sibling(OuterRight)" trait="x" />
+			<add src="sibling(InnerLeft)" trait="x" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y> 0 </y>
+		<width> 4 </width>
+		<height> <copy src="parent()" trait="_DefaultHeight" /> </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="CenterHor">
+		<alpha> 127 </alpha>
+		<depth> -1 </depth>
+		<x> 0 </x>
+		<y>
+			<copy src="sibling(OuterBottom)" trait="y" />
+			<add src="sibling(InnerTop)" trait="y" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<width> <copy src="parent()" trait="_DefaultWidth" /> </width>
+		<height> 4 </height>
+		<systemcolor> 3 </systemcolor>
+		<filename> solid.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+
+</rect>

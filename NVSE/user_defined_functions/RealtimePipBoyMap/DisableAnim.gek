@@ -1,0 +1,18 @@
+int iAnimID
+
+begin Function {iAnimID}
+
+	if eval Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" == 0
+		return
+	endif
+	Player.DeactivateAnim "PipBoyMinimap\PipBoyRader.kf" 0
+	Player.SetMaterialPropertyValue (Goo1.AuxVarGetStr "*PipMap_Block") 8 1
+	if eval TogglePipBoyLight
+		Player.SetMaterialPropertyValue "PipboyLightEffect:0" 7 1
+	endif
+	Player.ProjectUITile "HUDMainMenu\ModernMinimap" (Goo1.AuxVarGetStr "*PipMap_Block") -1000 -1000 1 1
+	EnablePlayerControlsAltEx 32148
+	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
+
+end

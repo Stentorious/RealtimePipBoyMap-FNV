@@ -1,0 +1,131 @@
+; Realtime Pip-boy Map - Stentorious + xConfused + Hitman
+
+; On game load
+Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+Goo1.AuxVarSetFlt "*PipMap_Editor" 0
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
+
+; On game restart
+if eval Goo1.AuxVarGetFlt "*PipMap_Init"
+	return
+endif
+Goo1.AuxVarSetFlt "*PipMap_Init" 1
+
+; Check for requirements
+if eval GetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" == -999
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest Modern Minimap - ESPless."
+	return
+endif
+if GetNVSEVersion > 5 && GetNVSERevision > 2 && GetNVSEBeta > 9
+else
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall xNVSE 6.3.10+."
+	return
+endif
+if GetPluginVersion "JohnnyGuitarNVSE" < 360
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest JohnnyGuitar NVSE plugin."
+	return
+endif
+if GetPluginVersion "ShowOffNVSE Plugin" < 165
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest ShowOff NVSE plugin."
+	return
+endif
+if GetPluginVersion "UI Organizer Plugin" < 230
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest User Interface Organizer plugin."
+	return
+endif
+if GetPluginVersion "kNVSE" < 37
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest kNVSE plugin."
+	return
+endif
+if GetPluginVersion "lStewieAl's Tweaks" < 906
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest lStewieAl's Tweaks."
+	return
+endif
+
+; Load INI settings
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:iKeybind" "Stentorious\RealtimePipBoyMap.ini") 0
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 0 (GetINIFloat_Cached "General:fBrightness" "Stentorious\RealtimePipBoyMap.ini")) 1
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:bForceWalk" "Stentorious\RealtimePipBoyMap.ini") 2
+
+; Controller support
+if eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini"
+	SetEventHandler "OnControlDown:27" (begin Function {int iControlID}
+		if eval MenuMode
+			return
+		endif
+		DisablePlayerControlsAltEx 4
+	end)
+	SetEventHandler "OnControlUp:27" (begin Function {int iControlID}
+		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 0
+			EnablePlayerControlsAltEx 4
+		endif
+	end)
+	if eval GetINIFloat_Cached "General:bControlStyle" "Stentorious\RealtimePipBoyMap.ini"
+		SetOnControlDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 14
+	endif
+endif
+
+; Toggle control
+if eval GetINIFloat_Cached "General:bControlStyle" "Stentorious\RealtimePipBoyMap.ini"
+	Goo1.AuxVarSetFlt "*PipMap_INI" 1 3
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 (Goo1.AuxVarGetFlt "*PipMap_INI" 0)
+endif
+
+; Toggle editor
+if eval GetINIFloat_Cached "Developer:bEditor" "Stentorious\RealtimePipBoyMap.ini"
+	InjectUIXML "HUDMainMenu\ModernMinimap" "Data\Menus\Prefabs\Stentorious\RealtimePipBoyMap\Editor.xml"
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 28	; Enter
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 14	; Backspace
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 12	; Minus
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 13	; Plus
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 200	; Up
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 203	; Left
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 205	; Right
+	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 208	; Down
+endif
+
+CloseFileSO "Stentorious\RealtimePipBoyMap.ini" 0
+
+; Load Pip-Boy screen INI settings
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" (GetINIFloat_Cached "PipBoy:fCardinalOffset" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (GetINIFloat_Cached "PipBoy:fMapOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (GetINIFloat_Cached "PipBoy:fMapOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (GetINIFloat_Cached "PipBoy:fSafeOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (GetINIFloat_Cached "PipBoy:fSafeOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (GetINIFloat_Cached "PipBoy:fSafeWidth" "Stentorious\RealtimePipBoyScreen.ini")
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (GetINIFloat_Cached "PipBoy:fSafeHeight" "Stentorious\RealtimePipBoyScreen.ini")
+CloseFileSO "Stentorious\RealtimePipBoyScreen.ini" 0
+
+; Update map
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_WidthRatio" 1.4
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_RenderUpdateX" 0.75
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_RenderUpdateY" 0.75
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\x" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneLeft") + 25)
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\y" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneTop") + 25)
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VL\visible" 0
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VR\visible" 0
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HT\visible" 0
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HB\visible" 0
+CallAfter 0 (begin Function {}
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale" 2
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\Background\alpha" 0
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\x" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneRight" - (GetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\width") - 25)
+end)
+
+Goo1.AuxVarSetStr "*PipMap_Block" "pipboyscreen:0"
+
+SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\MainLoop.gek") 1 5 1
+SetGameMainLoopCallback (begin function {}
+	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" > 0
+		Player.ProjectUITile "HUDMainMenu\ModernMinimap" (Goo1.AuxVarGetStr "*PipMap_Block") 0 -2000 1024 768
+	endif
+end) 1 1 1
+
+; Disable anims
+SetOnMenuOpenEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 1009
+SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 Player 13
+
+SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1002
+SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1003
+SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1023

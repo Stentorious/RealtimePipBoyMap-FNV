@@ -1,0 +1,124 @@
+int iKeyID
+
+int iInput
+float fSafePosX
+float fSafePosY
+float fMapPosX
+float fMapPosY
+float fWidth
+float fHeight
+
+begin Function {iKeyID}
+
+	if eval MenuMode
+		return
+	endif
+
+	if eval iKeyID == 28
+		; Open editor
+		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" && Goo1.AuxVarGetFlt "*PipMap_Editor" == 0
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 1
+			Goo1.AuxVarSetFlt "*PipMap_Editor" 1
+
+		; Save INI preset
+		elseif eval Goo1.AuxVarGetFlt "*PipMap_Editor"
+			;SetINIValC "PipBoy:fScale" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale") / 2) "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fCardinalOffset" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fMapOffsetX" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fMapOffsetY" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fSafeOffsetX" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fSafeOffsetY" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fSafeWidth" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth") "Stentorious\RealtimePipBoyScreen.ini"
+			SetINIValC "PipBoy:fSafeHeight" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight") "Stentorious\RealtimePipBoyScreen.ini"
+			SaveCachedINI "Stentorious\RealtimePipBoyScreen.ini"
+			CloseFileSO "Stentorious\RealtimePipBoyScreen.ini" 0
+			MessageExAlt 1 "#1|Preset saved!"
+		endif
+
+		return
+	endif
+
+	if eval Goo1.AuxVarGetFlt "*PipMap_Editor" == 0
+		return
+	endif
+
+	; Exit menu
+	if eval iKeyID == 14
+		Goo1.AuxVarSetFlt "*PipMap_Editor" 0
+		;SetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale" ((GetINIFloat_Cached "PipBoy:fScale" "Stentorious\RealtimePipBoyScreen.ini") * 2)
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" (GetINIFloat_Cached "PipBoy:fCardinalOffset" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (GetINIFloat_Cached "PipBoy:fMapOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (GetINIFloat_Cached "PipBoy:fMapOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (GetINIFloat_Cached "PipBoy:fSafeOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (GetINIFloat_Cached "PipBoy:fSafeOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (GetINIFloat_Cached "PipBoy:fSafeWidth" "Stentorious\RealtimePipBoyScreen.ini")
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (GetINIFloat_Cached "PipBoy:fSafeHeight" "Stentorious\RealtimePipBoyScreen.ini")
+		CloseFileSO "Stentorious\RealtimePipBoyScreen.ini" 0
+		SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
+		return
+	endif
+
+	fSafePosX = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX"
+	fSafePosY = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY"
+	fMapPosX = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX"
+	fMapPosY = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY"
+	fWidth = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth"
+	fHeight = GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight"
+
+	; Increase width/height
+	if eval iKeyID == 12 || IsKeyPressed 12 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (fHeight + 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (fWidth + 1)
+		endif
+	; Decrease width/height
+	elseif eval iKeyID == 13 || IsKeyPressed 13 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (fHeight - 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (fWidth - 1)
+		endif
+	endif
+
+	; Move up
+	if eval iKeyID == 200 || IsKeyPressed 200 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (fMapPosY - 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (fSafePosY - 1)
+		endif
+	; Move down
+	elseif eval iKeyID == 208 || IsKeyPressed 208 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (fMapPosY + 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (fSafePosY + 1)
+		endif
+	endif
+	; Move left
+	if eval iKeyID == 203 || IsKeyPressed 203 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (fMapPosX - 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (fSafePosX - 1)
+		endif
+	; Move right
+	elseif eval iKeyID == 205 || IsKeyPressed 205 2
+		iInput = 1
+		if eval IsKeyPressed 157 2
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (fMapPosX + 1)
+		else
+			SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (fSafePosX + 1)
+		endif
+	endif
+
+	if eval iInput
+		CallAfter 0.11 (CompileScript "RealtimePipBoyMap\EditorInput.gek") 0 0
+	endif
+end

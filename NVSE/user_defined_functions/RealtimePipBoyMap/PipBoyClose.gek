@@ -1,0 +1,11 @@
+int iMenuID
+
+begin Function {iMenuID}
+
+	; Add delay for bringing up realtime Pip-Boy after closing Pip-Boy menu
+	if eval !(MenuMode 1)
+		Goo1.AuxVarSetFlt "*PipMap_Anim" 2
+		CallAfter 1 ({} => Goo1.AuxVarSetFlt "*PipMap_Anim" 0)
+	endif
+
+end

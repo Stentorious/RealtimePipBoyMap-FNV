@@ -1,0 +1,160 @@
+<visible> 1 </visible>
+<x>
+	<copy> 0 </copy>
+	<add src="me()" trait="_MapOffsetX" />
+</x>
+<y>
+	<copy> -2000 </copy>
+	<add src="me()" trait="_MapOffsetY" />
+</y>
+<clipwindow> 0 </clipwindow>
+
+<_MapOffsetX> 0 </_MapOffsetX>
+<_MapOffsetY> 0 </_MapOffsetY>
+<_SafeOffsetX> -256 </_SafeOffsetX>
+<_SafeOffsetY> -104 </_SafeOffsetY>
+<_SafeWidth> 129 </_SafeWidth>
+<_SafeHeight> 99 </_SafeHeight>
+<_SafeZoneTop>
+	<copy src="me()" trait="_SafeOffsetY" />
+	<sub src="me()" trait="_MapOffsetY" />
+	<add src="me()" trait="_SafeHeight" />
+</_SafeZoneTop>
+<_SafeZoneBottom>
+	<copy src="me()" trait="_SafeOffsetY" />
+	<sub src="me()" trait="_MapOffsetY" />
+	<sub src="me()" trait="_SafeHeight" />
+	<add> 768 </add>
+</_SafeZoneBottom>
+<_SafeZoneLeft>
+	<copy src="me()" trait="_SafeOffsetX" />
+	<sub src="me()" trait="_MapOffsetX" />
+	<add src="me()" trait="_SafeWidth" />
+</_SafeZoneLeft>
+<_SafeZoneRight>
+	<copy src="me()" trait="_SafeOffsetX" />
+	<sub src="me()" trait="_MapOffsetX" />
+	<sub src="me()" trait="_SafeWidth" />
+	<add> 1024 </add>
+</_SafeZoneRight>
+
+<rect name="CombatBorder">
+
+	<visible>
+		<copy src="parent()" trait="_systemcolor" />
+		<eq> 2 </eq>
+		<or src="parent()" trait="_PlrSneak" />
+	</visible>
+
+	<_systemcolor_0> &hudmain; </_systemcolor_0>
+	<_systemcolor_1> &hudalt; </_systemcolor_1>
+	<_systemcolor_2> 0 </_systemcolor_2>
+	<_systemcolor_3> &hudalt; </_systemcolor_3>
+	<_red_0> 255 </_red_0>
+	<_red_1> 255 </_red_1>
+	<_red_2> 46 </_red_2>
+	<_red_3> 255 </_red_3>
+	<_green_0> 255 </_green_0>
+	<_green_1> 255 </_green_1>
+	<_green_2> 206 </_green_2>
+	<_green_3> 255 </_green_3>
+	<_blue_0> 255 </_blue_0>
+	<_blue_1> 255 </_blue_1>
+	<_blue_2> 255 </_blue_2>
+	<_blue_3> 255 </_blue_3>
+	<_systemcolor>
+		<copy src="parent()" trait="_PlrDetect" />
+		<copy src="me()" trait="_systemcolor_" />
+	</_systemcolor>
+	<_red>
+		<copy src="parent()" trait="_PlrDetect" />
+		<copy src="me()" trait="_red_" />
+	</_red>
+	<_green>
+		<copy src="parent()" trait="_PlrDetect" />
+		<copy src="me()" trait="_green_" />
+	</_green>
+	<_blue>
+		<copy src="parent()" trait="_PlrDetect" />
+		<copy src="me()" trait="_blue_" />
+	</_blue>
+
+	<_brightness> <copy src="sibling(Scan)" trait="brightness" /> </_PlrSneak>
+	<_Offset> 16 </_Offset>
+
+	<image name="Top">
+		<alpha> 204 </alpha>
+		<depth> 501 </depth>
+		<x> -256 </x>
+		<y>
+			<copy src="grandparent()" trait="_SafeZoneTop" />
+			<sub src="parent()" trait="_Offset" />
+		</y>
+		<width> 1024 </width>
+		<height> 48 </height>
+		<systemcolor> <copy src="parent()" trait="_systemcolor" /> </systemcolor>
+		<red> <copy src="parent()" trait="_red" /> </red>
+		<green> <copy src="parent()" trait="_green" /> </green>
+		<blue> <copy src="parent()" trait="_blue" /> </blue>
+		<brightness> <copy src="parent()" trait="_brightness" /> </brightness>
+		<filename> fade_to_bottom.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="Bottom">
+		<alpha> 204 </alpha>
+		<depth> 501 </depth>
+		<x> -256 </x>
+		<y>
+			<copy src="grandparent()" trait="_SafeZoneBottom" />
+			<add src="parent()" trait="_Offset" />
+			<sub src="me()" trait="height" />
+		</y>
+		<width> <copy src="sibling(Top)" trait="width" /> </width>
+		<height> <copy src="sibling(Top)" trait="height" /> </height>
+		<systemcolor> <copy src="parent()" trait="_systemcolor" /> </systemcolor>
+		<red> <copy src="parent()" trait="_red" /> </red>
+		<green> <copy src="parent()" trait="_green" /> </green>
+		<blue> <copy src="parent()" trait="_blue" /> </blue>
+		<brightness> <copy src="parent()" trait="_brightness" /> </brightness>
+		<filename> fade_to_top.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="Left">
+		<alpha> 204 </alpha>
+		<depth> 501 </depth>
+		<x>
+			<copy src="grandparent()" trait="_SafeZoneLeft" />
+			<sub src="parent()" trait="_Offset" />
+		</x>
+		<y> <copy src="sibling(Top)" trait="y" /> </y>
+		<width> <copy src="sibling(Top)" trait="height" /> </width>
+		<height> <copy src="sibling(Top)" trait="width" /> </height>
+		<systemcolor> <copy src="parent()" trait="_systemcolor" /> </systemcolor>
+		<red> <copy src="parent()" trait="_red" /> </red>
+		<green> <copy src="parent()" trait="_green" /> </green>
+		<blue> <copy src="parent()" trait="_blue" /> </blue>
+		<brightness> <copy src="parent()" trait="_brightness" /> </brightness>
+		<filename> fade_to_right.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+	<image name="Right">
+		<alpha> 204 </alpha>
+		<depth> 501 </depth>
+		<x>
+			<copy src="grandparent()" trait="_SafeZoneRight" />
+			<add src="parent()" trait="_Offset" />
+			<sub src="me()" trait="width" />
+		</x>
+		<y> <copy src="sibling(Top)" trait="y" /> </y>
+		<width> <copy src="sibling(Top)" trait="height" /> </width>
+		<height> <copy src="sibling(Top)" trait="width" /> </height>
+		<systemcolor> <copy src="parent()" trait="_systemcolor" /> </systemcolor>
+		<red> <copy src="parent()" trait="_red" /> </red>
+		<green> <copy src="parent()" trait="_green" /> </green>
+		<blue> <copy src="parent()" trait="_blue" /> </blue>
+		<brightness> <copy src="parent()" trait="_brightness" /> </brightness>
+		<filename> fade_to_left.dds </filename>
+		<texatlas> Interface\InterfaceShared.tai </texatlas>
+	</image>
+
+</rect>

@@ -1,0 +1,3 @@
+Stentorious\RealtimePipBoyMap\ModernMinimap.xml::@Prefabs\Stentorious\ModernMinimap.xml::ModernMinimap
+#Stentorious\ModernMinimap.xml
+true
