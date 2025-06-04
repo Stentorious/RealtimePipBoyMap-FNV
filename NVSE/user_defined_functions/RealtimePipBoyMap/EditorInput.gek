@@ -16,7 +16,7 @@ begin Function {iKeyID}
 
 	if eval iKeyID == 28
 		; Open editor
-		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" && Goo1.AuxVarGetFlt "*PipMap_Editor" == 0
+		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "PipBoyMinimap\RealtimePipBoy.kf" && Goo1.AuxVarGetFlt "*PipMap_Editor" == 0
 			SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 1
 			Goo1.AuxVarSetFlt "*PipMap_Editor" 1
 

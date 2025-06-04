@@ -2,10 +2,10 @@ int iAnimID
 
 begin Function {iAnimID}
 
-	if eval Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" == 0
+	if eval Player.IsAnimSequencePlaying "PipBoyMinimap\RealtimePipBoy.kf" == 0
 		return
 	endif
-	Player.DeactivateAnim "PipBoyMinimap\PipBoyRader.kf" 0
+	Player.DeactivateAnim "PipBoyMinimap\RealtimePipBoy.kf" 0
 	Player.SetMaterialPropertyValue "pipboyscreen:0" 8 1
 	if eval TogglePipBoyLight
 		Player.SetMaterialPropertyValue "PipboyLightEffect:0" 7 1
