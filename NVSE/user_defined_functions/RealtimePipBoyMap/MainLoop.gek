@@ -1,6 +1,6 @@
 begin Function {}
 
-	if eval (Goo1.AuxVarGetFlt "*PipMap_Anim" == 3 || Goo1.AuxVarGetFlt "*PipMap_Anim" == 1) && Player.IsAnimSequencePlaying "PipBoyMinimap\RealtimePipBoy.kf" == 0
+	if eval (Goo1.AuxVarGetFlt "*PipMap_Anim" == 3 || Goo1.AuxVarGetFlt "*PipMap_Anim" == 1) && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" == 0
 		Player.SetMaterialPropertyValue "pipboyscreen:0" 8 1
 		if eval TogglePipBoyLight
 			Player.SetMaterialPropertyValue "PipboyLightEffect:0" 7 1
@@ -11,7 +11,7 @@ begin Function {}
 		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
 
 	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 3 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
-		if eval MenuMode || Player.IsAnimSequencePlaying "PipBoyMinimap\RealtimePipBoy.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
+		if eval MenuMode || Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
 			return
 		endif
 
@@ -22,13 +22,13 @@ begin Function {}
 		Player.SetMaterialPropertyValue "pipboyscreen:0" 5 1
 		Player.SetMaterialPropertyValue "pipboyscreen:0" 7 1
 		Player.SetMaterialPropertyValue "pipboyscreen:0" 8 (Goo1.AuxVarGetFlt "*PipMap_INI" 1)
-		Player.DeactivateAnim "PipBoyMinimap\RealtimePipBoy.kf" 0
-		Player.ActivateAnim "PipBoyMinimap\RealtimePipBoy.kf" 1 0 1 1 0.4
+		Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0
+		Player.ActivateAnim "RealtimePipBoy\Check.kf" 1 0 1 1 0.4
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 1
 		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 1
 
-	elseif Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "PipBoyMinimap\RealtimePipBoy.kf" && Player.GetAnimCurrentTime "PipBoyMinimap\RealtimePipBoy.kf" == 2
-		Player.DeactivateAnim "PipBoyMinimap\RealtimePipBoy.kf" 0.4
+	elseif Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" && Player.GetAnimCurrentTime "RealtimePipBoy\Check.kf" == 2
+		Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0.4
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 2
 		EnablePlayerControlsAltEx 2048
 		CallAfter 0.45 ({} => Goo1.AuxVarSetFlt "*PipMap_Anim" 3)
