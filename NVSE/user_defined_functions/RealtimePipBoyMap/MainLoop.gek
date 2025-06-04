@@ -10,8 +10,8 @@ begin Function {}
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 0
 		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
 
-	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 3 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
-		if eval MenuMode || Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.IsAnimPlayingEx 5 || Player.IsAnimPlayingEx 4 || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
+	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 3 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
+		if eval MenuMode || Player.IsAnimSequencePlaying "PipBoyMinimap\PipBoyRader.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
 			return
 		endif
 
