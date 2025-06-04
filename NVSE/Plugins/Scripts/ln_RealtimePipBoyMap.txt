@@ -6,6 +6,12 @@ Goo1.AuxVarSetFlt "*PipMap_Editor" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
 
+; Pip-Boy reset timer
+SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
+	sv_Destruct sName
+	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+end) "*PipMap_Reset"
+
 ; On game restart
 if eval Goo1.AuxVarGetFlt "*PipMap_Init"
 	return
@@ -51,13 +57,13 @@ Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:bForceWalk" "Stento
 ; Controller support
 if eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini"
 	SetEventHandler "OnControlDown:27" (begin Function {int iControlID}
-		if eval MenuMode
+		if eval MenuMode || GetController == 0
 			return
 		endif
 		DisablePlayerControlsAltEx 4
 	end)
 	SetEventHandler "OnControlUp:27" (begin Function {int iControlID}
-		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 0
+		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 0 && GetController
 			EnablePlayerControlsAltEx 4
 		endif
 	end)
@@ -113,12 +119,11 @@ CallAfter 0 (begin Function {}
 	SetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\x" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneRight" - (GetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\width") - 25)
 end)
 
-Goo1.AuxVarSetStr "*PipMap_Block" "pipboyscreen:0"
-
-SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\MainLoop.gek") 1 5 1
+; Main loops
+SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\MainLoop.gek") 1 10 1
 SetGameMainLoopCallback (begin function {}
 	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" > 0
-		Player.ProjectUITile "HUDMainMenu\ModernMinimap" (Goo1.AuxVarGetStr "*PipMap_Block") 0 -2000 1024 768
+		Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" 0 -2000 1024 768
 	endif
 end) 1 1 1
 
@@ -126,6 +131,7 @@ end) 1 1 1
 SetOnMenuOpenEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 1009
 SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 Player 13
 
+; Pip-Boy reset events
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1002
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1003
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1023
