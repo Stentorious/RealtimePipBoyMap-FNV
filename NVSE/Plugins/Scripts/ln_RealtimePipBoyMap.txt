@@ -78,6 +78,11 @@ if eval GetINIFloat_Cached "General:bControlStyle" "Stentorious\RealtimePipBoyMa
 	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 (Goo1.AuxVarGetFlt "*PipMap_INI" 0)
 endif
 
+; Toggle detection state border
+if eval GetINIFloat_Cached "Features:bDetectionState" "Stentorious\RealtimePipBoyMap.ini" == 0
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\CombatBorder\visible" 0
+endif
+
 ; Toggle editor
 if eval GetINIFloat_Cached "Developer:bEditor" "Stentorious\RealtimePipBoyMap.ini"
 	InjectUIXML "HUDMainMenu\ModernMinimap" "Data\Menus\Prefabs\Stentorious\RealtimePipBoyMap\Editor.xml"
