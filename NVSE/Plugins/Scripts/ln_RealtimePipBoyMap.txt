@@ -128,8 +128,9 @@ end) 1 (GetMaxOf 0 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\R
 CloseFileSO "Stentorious\RealtimePipBoyMap.ini" 0
 
 ; Disable anims
-SetOnMenuOpenEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 1009
-SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 Player 13
+SetOnMenuOpenEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 1009		; Dialog
+SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 Player 9	; Reload/Jam
+SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 1 Player 13	; Idle/Scripted
 
 ; Pip-Boy reset events
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1002
