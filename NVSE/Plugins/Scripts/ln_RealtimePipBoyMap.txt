@@ -5,6 +5,7 @@ Goo1.AuxVarSetFlt "*PipMap_Anim" 0
 Goo1.AuxVarSetFlt "*PipMap_Editor" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
+Player.AuxVarSetFlt "*_PBSAODisable" 0
 
 ; Pip-Boy reset timer
 SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
@@ -51,8 +52,9 @@ endif
 
 ; Load INI settings
 Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:iKeybind" "Stentorious\RealtimePipBoyMap.ini") 0
-Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 0 (GetINIFloat_Cached "General:fBrightness" "Stentorious\RealtimePipBoyMap.ini")) 1
-Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:bForceWalk" "Stentorious\RealtimePipBoyMap.ini") 2
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 1 (GetINIFloat_Cached "General:fBrightnessInterior" "Stentorious\RealtimePipBoyMap.ini")) 1
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 1 (GetINIFloat_Cached "General:fBrightnessExterior" "Stentorious\RealtimePipBoyMap.ini")) 2
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:bForceWalk" "Stentorious\RealtimePipBoyMap.ini") 3
 
 ; Controller support
 if eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini"
@@ -74,13 +76,8 @@ endif
 
 ; Toggle control
 if eval GetINIFloat_Cached "General:bControlStyle" "Stentorious\RealtimePipBoyMap.ini"
-	Goo1.AuxVarSetFlt "*PipMap_INI" 1 3
+	Goo1.AuxVarSetFlt "*PipMap_INI" 1 4
 	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 (Goo1.AuxVarGetFlt "*PipMap_INI" 0)
-endif
-
-; Toggle detection state border
-if eval GetINIFloat_Cached "Features:bDetectionState" "Stentorious\RealtimePipBoyMap.ini" == 0
-	SetUIFloatAlt "HUDMainMenu\ModernMinimap\CombatBorder\visible" 0
 endif
 
 ; Toggle editor
@@ -126,7 +123,7 @@ end)
 SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\MainLoop.gek") 1 10 1
 SetGameMainLoopCallback (begin function {}
 	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" > 0
-		Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" 0 -2000 1024 768
+		Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" -10000 -10000 1024 768
 	endif
 end) 1 (GetMaxOf 0 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\RealtimePipBoyMap.ini")) 1
 
