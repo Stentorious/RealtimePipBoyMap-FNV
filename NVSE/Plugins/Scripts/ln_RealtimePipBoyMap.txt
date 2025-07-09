@@ -24,9 +24,8 @@ if eval GetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" == -999
 	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest Modern Minimap - ESPless."
 	return
 endif
-if GetNVSEVersion > 5 && GetNVSERevision > 2 && GetNVSEBeta > 9
-else
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall xNVSE 6.3.10+."
+if eval GetNVSEVersion < 6 || (GetNVSEVersion == 6 && GetNVSERevision < 4)
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall xNVSE 6.4.0+."
 	return
 endif
 if GetPluginVersion "JohnnyGuitarNVSE" < 360
