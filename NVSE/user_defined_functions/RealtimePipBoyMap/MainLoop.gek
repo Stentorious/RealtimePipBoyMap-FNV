@@ -31,8 +31,8 @@ begin Function {}
 		Player.AuxVarSetFlt "*_PBSAODisable" 0
 
 	; Init animation start
-	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
-		if eval MenuMode || Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
+	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (Goo1.AuxVarGetFlt "*PipMap_INI" 5 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0 && GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
+		if eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
 			return
 		endif
 
@@ -40,6 +40,8 @@ begin Function {}
 		DisablePlayerControlsAltEx (30100 + (2048 * (Goo1.AuxVarGetFlt "*PipMap_INI" 3)))
 
 		; Update model
+		ToggleNthPipboyLight 0 0
+		ToggleNthPipboyLight 1 0
 		ToggleNthPipboyLight 2 1
 		Player.SetNifBlockFlag "pipboyscreen:0" 0 0
 		Player.SetMatrPropVal "PipboyLightEffect:0" 7 0

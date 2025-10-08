@@ -1,0 +1,25 @@
+float fValue
+int iMenu
+int iSubmenu
+int iOption
+array_var aJSON
+
+int iKeybind
+int iIndex
+
+Begin Function {fValue, iMenu, iSubmenu, iOption, aJSON}
+
+	; Update keybind
+	if eval (iKeybind = Goo1.AuxVarGetFlt "*PipMap_INI" 0) != fValue
+		if eval iKeybind > 0
+			SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 0 iKeybind
+		endif
+		if eval fValue > 0
+			SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 fValue
+		endif
+		Goo1.AuxVarSetFlt "*PipMap_INI" fValue 0
+	endif
+
+	aJSON = ar_Null
+
+End

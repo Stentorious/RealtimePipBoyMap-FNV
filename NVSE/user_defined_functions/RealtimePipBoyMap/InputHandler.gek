@@ -1,15 +1,18 @@
 int iKeyID
 
+int iController
+
 begin Function {iKeyID}
 
-	if eval iKeyID == (Goo1.AuxVarGetFlt "*PipMap_INI" 0) || (GetController && iKeyID == 14 && IsControlPressed 27)
-	else
+	; Ignore inputs
+	iController = GetController
+	if eval Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0 || (iController == 0 && iKeyID != Goo1.AuxVarGetFlt "*PipMap_INI" 0) || (iController && (Goo1.AuxVarGetFlt "*PipMap_INI" 5 == 0 || iKeyID != 14 || IsControlPressed 27 == 0))
 		return
 	endif
 
 	if eval Goo1.AuxVarGetFlt "*PipMap_Toggle"
 		Goo1.AuxVarSetFlt "*PipMap_Toggle" 0
-	elseif MenuMode || Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0
+	elseif eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
 		return
 	else
 		Goo1.AuxVarSetFlt "*PipMap_Toggle" 1
