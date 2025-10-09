@@ -1,3 +1,6 @@
 Stentorious\RealtimePipBoyMap\ModernMinimap.xml::@Prefabs\Stentorious\ModernMinimap\Main.xml::ModernMinimap
 #Stentorious\ModernMinimap\Main.xml
 true
+Stentorious\RealtimePipBoyMap\JDC.xml::@Prefabs\JDC\JDC.xml::JDC
+#JDC\JDC.xml
+true

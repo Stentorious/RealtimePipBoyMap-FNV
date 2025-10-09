@@ -23,10 +23,15 @@ begin Function {iAnimID}
 	Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" -1000 -1000 1 1
 
 	; Enable controls
+	EC 7
 	EnablePlayerControlsAltEx 32148
 
 	; Finish animation
 	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+
+	; Enable crosshair
+	SetUIFloatAlt "HUDMainMenu\JDC\_visible_stent" 1
+	SetUIFloatAlt "HUDMainMenu\ReticleCenter\reticle_center\alpha" 255
 
 	; Disable minimap updates
 	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
