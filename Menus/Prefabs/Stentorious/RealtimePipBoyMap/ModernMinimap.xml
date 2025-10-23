@@ -1,3 +1,6 @@
+<_ScanlineAlpha> 0 </_ScanlineAlpha>
+<_ScanlineBrightness> 0 </_ScanlineBrightness>
+
 <visible> 1 </visible>
 <x>
 	<copy> -10000 </copy>
@@ -38,6 +41,23 @@
 	<sub src="me()" trait="_SafeWidth" />
 	<add> 1024 </add>
 </_SafeZoneRight>
+
+<image name="Scanlines">
+	<visible> 1 </visible>
+	<alpha>
+		<copy src="parent()" trait="_ScanlineAlpha" />
+		<mul> 2.55 </mul>
+	</alpha>
+	<depth> 2000 </depth>
+	<x> -256 </x>
+	<y> -256 </y>
+	<zoom> -1 </zoom>
+	<width> 1024 </width>
+	<height> 1024 </height>
+	<systemcolor> &pipboy; </systemcolor>
+	<brightness> <copy src="parent()" trait="_ScanlineBrightness" /> </brightness>
+	<filename> Interface\Stentorious\ModernMinimap\Scanlines.dds </filename>
+</image>
 
 <rect name="CombatBorder">
 
@@ -80,7 +100,7 @@
 		<copy src="me()" trait="_blue_" />
 	</_blue>
 
-	<_brightness> <copy src="sibling(Scan)" trait="brightness" /> </_PlrSneak>
+	<_brightness> <copy src="sibling(Scan)" trait="brightness" /> </_brightness>
 	<_Offset> 16 </_Offset>
 
 	<image name="Top">

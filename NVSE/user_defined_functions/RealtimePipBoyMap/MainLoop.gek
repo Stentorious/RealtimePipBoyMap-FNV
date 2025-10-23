@@ -75,7 +75,7 @@ begin Function {}
 		; Update Modern Minimap
 		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 1
 		if eval GetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapMode" == 1
-			Call (CompileScript "ModernMinimap\MainLoop.gek")
+			Call (CompileScript (Goo1.AuxVarGetStr "*Minimap_Script" 0))
 		else
 			Call (CompileScript "ModernMinimap\WorldMap\MainLoop.gek")
 		endif

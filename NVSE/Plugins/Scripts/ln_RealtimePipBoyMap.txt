@@ -20,7 +20,7 @@ endif
 Goo1.AuxVarSetFlt "*PipMap_Init" 1
 
 ; Check for requirements
-if eval GetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" == -999
+if eval FileExists "NVSE\CompileScript\ModernMinimap\MainLoop.gek" == 0
 	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest Modern Minimap - ESPless."
 	return
 endif
@@ -62,6 +62,7 @@ Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bForceWalk" "S
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:iControlStyle" "Stentorious\RealtimePipBoyMap.ini" 0) 4
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini" 1) 5
 Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 1 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\RealtimePipBoyMap.ini" 1)) 6
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ScanlineAlpha" (GetINIFloat_Cached "PipBoy:fScanlineAlpha" "Stentorious\RealtimePipBoyMap.ini" 50)
 
 ; Controller support
 SetEventHandler "OnControlDown:27" (begin Function {int iControlID}
@@ -111,6 +112,13 @@ SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VL\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VR\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HT\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HB\visible" 0
+SetUIFloatGradual "HUDMainMenu\ModernMinimap\_ScanlineBrightness" 204 255 2.3 2
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\height" 128
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\y" 0
+SetUIFloatGradual "HUDMainMenu\ModernMinimap\Scan\y" -1024 1536 7.5 3
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\brightness" 0
+SetUIFloatGradual "HUDMainMenu\ModernMinimap\Scan\brightness" 153 255 2 2
+SetUIStringAlt "HUDMainMenu\ModernMinimap\Scan\filename" "Interface\Stentorious\ModernMinimap\Distortion.dds"
 CallAfter 0 (begin Function {}
 	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale" 2
 	SetUIFloatAlt "HUDMainMenu\ModernMinimap\Background\alpha" 0

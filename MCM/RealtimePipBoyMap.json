@@ -82,12 +82,27 @@
 						"suffix": "x"
 					}
 				},
-				"9": {
+				"8": {
+					"title": "$ScanlineOpacity",
+					"type": 2,
+					"enable": 1,
+					"suffix": "%",
+					"mouse": "$ScanlineOpacityMouse",
+					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_ScanlineAlpha", "configINI": "General:fScanlineAlpha", "default": 50 } ],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1,
+						"valueMin": 0,
+						"valueMax": 100,
+						"suffix": "%"
+					}
+				},
+				"10": {
 					"title": "$Performance",
 					"enable": 2,
 					"type": 0
 				},
-				"10": {
+				"11": {
 					"title": "$RefreshInterval",
 					"type": 2,
 					"enable": 2,
