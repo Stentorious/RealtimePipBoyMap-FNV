@@ -68,8 +68,8 @@ Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bForceWalk" "S
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:iControlStyle" "Stentorious\RealtimePipBoyMap.ini" 0) 4
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini" 1) 5
 Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 1 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\RealtimePipBoyMap.ini" 1)) 6
-Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:fDepthOfField" "Stentorious\RealtimePipBoyMap.ini" 100) 7
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ScanlineAlpha" (GetINIFloat_Cached "PipBoy:fScanlineAlpha" "Stentorious\RealtimePipBoyMap.ini" 50)
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:iDepthOfField" "Stentorious\RealtimePipBoyMap.ini" 100) 7
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ScanlineAlpha" (GetINIFloat_Cached "PipBoy:iScanlineAlpha" "Stentorious\RealtimePipBoyMap.ini" 50)
 
 ; Controller support
 SetEventHandler "OnControlDown:27" (begin Function {int iControlID}

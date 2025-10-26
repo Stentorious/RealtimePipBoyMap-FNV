@@ -88,7 +88,7 @@
 					"enable": 1,
 					"suffix": "%",
 					"mouse": "$ScanlineOpacityMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_ScanlineAlpha", "configINI": "General:fScanlineAlpha", "default": 50 } ],
+					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_ScanlineAlpha", "configINI": "General:iScanlineAlpha", "default": 50 } ],
 					"scale": {
 						"valueDecimal": 0,
 						"valueIncrement": 1,
@@ -103,7 +103,7 @@
 					"enable": 1,
 					"suffix": "%",
 					"mouse": "$DepthOfFieldMouse",
-					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 7, "configINI": "General:fDepthOfField", "default": 100 } ],
+					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 7, "configINI": "General:iDepthOfField", "default": 100 } ],
 					"scale": {
 						"valueDecimal": 0,
 						"valueIncrement": 1,
