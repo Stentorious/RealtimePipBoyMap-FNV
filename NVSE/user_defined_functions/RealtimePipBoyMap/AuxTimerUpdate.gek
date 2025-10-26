@@ -1,0 +1,20 @@
+string_var sTimerName
+ref rOwner
+float fTimeDelta
+
+float fDoFStrength
+float fTimeElapsed
+
+begin Function {sTimerName, rOwner, fTimeDelta}
+
+	sv_Destruct sTimerName
+
+	fTimeElapsed = GetMinOf 1 ((AuxTimerTimeElapsed "*PipMap_DoF") * 2)
+	if eval Goo1.AuxVarGetFlt "*PipMap_DoF" 0 == 1
+		fDoFStrength = EaseAlt fTimeElapsed 2 1
+	else
+		fDoFStrength = 1 - (EaseAlt fTimeElapsed 2 1)
+	endif
+	SetImageSpaceModTrait HouseDecorationExplorer 60 (GetMaxOf 0.000001 (fDoFStrength * ((Goo1.AuxVarGetFlt "*PipMap_INI" 7) / 100)))
+
+end

@@ -97,12 +97,27 @@
 						"suffix": "%"
 					}
 				},
-				"10": {
+				"9": {
+					"title": "$DepthOfField",
+					"type": 2,
+					"enable": 1,
+					"suffix": "%",
+					"mouse": "$DepthOfFieldMouse",
+					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 7, "configINI": "General:fDepthOfField", "default": 100 } ],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1,
+						"valueMin": 0,
+						"valueMax": 100,
+						"suffix": "%"
+					}
+				},
+				"11": {
 					"title": "$Performance",
 					"enable": 2,
 					"type": 0
 				},
-				"11": {
+				"12": {
 					"title": "$RefreshInterval",
 					"type": 2,
 					"enable": 2,

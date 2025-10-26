@@ -35,6 +35,11 @@ begin Function {}
 		; "Pip-Boy Screen Always On" compatibility
 		Player.AuxVarSetFlt "*_PBSAODisable" 0
 
+		; Remove DoF
+		AuxTimerStop "*PipMap_DoF"
+		RIMOD HouseDecorationExplorer
+		SetImageSpaceModTrait HouseDecorationExplorer 60 0
+
 	; Init animation start
 	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (Goo1.AuxVarGetFlt "*PipMap_INI" 5 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0 && GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
 		if eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
@@ -88,6 +93,12 @@ begin Function {}
 		; "Pip-Boy Screen Always On" compatibility
 		Player.AuxVarSetFlt "*_PBSAODisable" 1
 
+		; Transition DoF in
+		IMOD HouseDecorationExplorer
+		Goo1.AuxVarSetFlt "*PipMap_DoF" 1
+		AuxTimerStart "*PipMap_DoF" 0.5 270
+
+
 	; Init animation end
 	elseif Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" && Player.GetAnimCurrentTime "RealtimePipBoy\Check.kf" == 2
 
@@ -98,6 +109,10 @@ begin Function {}
 		Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0.4
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 2
 		CallAfter 0.45 ({} => Goo1.AuxVarSetFlt "*PipMap_Anim" 3)
+
+		; Transition DoF out
+		Goo1.AuxVarSetFlt "*PipMap_DoF" 0
+		AuxTimerStart "*PipMap_DoF" 0.5 270
 
 	endif
 

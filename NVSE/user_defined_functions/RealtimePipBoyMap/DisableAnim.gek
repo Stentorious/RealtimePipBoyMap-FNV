@@ -39,4 +39,9 @@ begin Function {iAnimID}
 	; "Pip-Boy Screen Always On" compatibility
 	Player.AuxVarSetFlt "*_PBSAODisable" 0
 
+	; Remove DoF
+	AuxTimerStop "*PipMap_DoF"
+	RIMOD HouseDecorationExplorer
+	SetImageSpaceModTrait HouseDecorationExplorer 60 0
+
 end

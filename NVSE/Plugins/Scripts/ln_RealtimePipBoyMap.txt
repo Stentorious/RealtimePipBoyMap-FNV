@@ -14,6 +14,11 @@ SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
 	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
 end) "*PipMap_Reset"
 
+; DoF update
+RIMOD HouseDecorationExplorer
+SetImageSpaceModTrait HouseDecorationExplorer 60 0
+SetOnTimerUpdateHandler 1 (CompileScript "RealtimePipBoyMap\AuxTimerUpdate.gek") "*PipMap_DoF"
+
 ; On game restart
 if eval Goo1.AuxVarGetFlt "*PipMap_Init"
 	return
@@ -63,6 +68,7 @@ Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bForceWalk" "S
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:iControlStyle" "Stentorious\RealtimePipBoyMap.ini" 0) 4
 Goo1.AuxVarSetFlt "*PipMap_INI" (eval GetINIFloat_Cached "General:bControllerSupport" "Stentorious\RealtimePipBoyMap.ini" 1) 5
 Goo1.AuxVarSetFlt "*PipMap_INI" (GetMaxOf 1 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\RealtimePipBoyMap.ini" 1)) 6
+Goo1.AuxVarSetFlt "*PipMap_INI" (GetINIFloat_Cached "General:fDepthOfField" "Stentorious\RealtimePipBoyMap.ini" 100) 7
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ScanlineAlpha" (GetINIFloat_Cached "PipBoy:fScanlineAlpha" "Stentorious\RealtimePipBoyMap.ini" 50)
 
 ; Controller support
@@ -155,3 +161,16 @@ SetOnActorValueChangeEventHandler 54 (begin function {int iAVCode, float fPrevio
 	fTemp3 = (((Player.GetAV RadiationRads) - 500) / 500) * 90
 	Player.SetNifRot "RadNeedle" (fTemp1) (fTemp2) (fTemp3) 2 2
 end) 0 54
+
+; Set IMOD traits
+SetImageSpaceModTrait HouseDecorationExplorer 37 1		; Saturation (Mult)
+SetImageSpaceModTrait HouseDecorationExplorer 38 0		; Saturation (Add)
+SetImageSpaceModTrait HouseDecorationExplorer 39 1		; Contrast (Mult)
+SetImageSpaceModTrait HouseDecorationExplorer 40 0		; Contrast (Add)
+SetImageSpaceModTrait HouseDecorationExplorer 42 0		; Contrast Lum (Add)
+SetImageSpaceModTrait HouseDecorationExplorer 43 1		; Brightness (Mult)
+SetImageSpaceModTrait HouseDecorationExplorer 44 0		; Brightness (Add)
+SetImageSpaceModTrait HouseDecorationExplorer 47 255	; Tint (Red)
+SetImageSpaceModTrait HouseDecorationExplorer 48 255	; Tint (Green)
+SetImageSpaceModTrait HouseDecorationExplorer 49 255	; Tint (Blue)
+SetImageSpaceModTrait HouseDecorationExplorer 50 0		; Tint (Alpha)
