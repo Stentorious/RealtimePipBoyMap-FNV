@@ -2,6 +2,7 @@
 
 ; On game load
 Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+Goo1.AuxVarSetFlt "*PipMap_Toggle" 0
 Goo1.AuxVarSetFlt "*PipMap_Editor" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
@@ -144,3 +145,13 @@ SetOnAnimActionEventHandler (CompileScript "RealtimePipBoyMap\DisableAnim.gek") 
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1002
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1003
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1023
+
+; Update Pip-Boy radiation gauge
+SetOnActorValueChangeEventHandler 54 (begin function {int iAVCode, float fPrevious, float fNew}
+	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 0 || ModelHasBlock Player "RadNeedle" == 0
+		return
+	endif
+	Player.GetNifRotAlt "RadNeedle" (float fTemp1) (float fTemp2) (float fTemp3) 2 2
+	fTemp3 = (((Player.GetAV RadiationRads) - 500) / 500) * 90
+	Player.SetNifRot "RadNeedle" (fTemp1) (fTemp2) (fTemp3) 2 2
+end) 0 54

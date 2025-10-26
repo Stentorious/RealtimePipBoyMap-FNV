@@ -49,6 +49,11 @@ begin Function {}
 		ToggleNthPipboyLight 0 0
 		ToggleNthPipboyLight 1 0
 		ToggleNthPipboyLight 2 1
+		if eval ModelHasBlock Player "RadNeedle"
+			Player.GetNifRotAlt "RadNeedle" (float fTemp1) (float fTemp2) (float fTemp3) 2 2
+			fTemp3 = (((Player.GetAV RadiationRads) - 500) / 500) * 90
+			Player.SetNifRot "RadNeedle" (fTemp1) (fTemp2) (fTemp3) 2 2
+		endif
 		Player.SetNifBlockFlag "pipboyscreen:0" 0 0
 		Player.SetMatrPropVal "PipboyLightEffect:0" 7 0
 		Player.SetMatrPropVal "pipboyscreen:0" 3 1
