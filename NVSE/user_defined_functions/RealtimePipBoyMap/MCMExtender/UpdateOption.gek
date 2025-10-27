@@ -10,14 +10,23 @@ int iIndex
 Begin Function {fValue, iMenu, iSubmenu, iOption, aJSON}
 
 	; Update keybind
-	if eval (iKeybind = Goo1.AuxVarGetFlt "*PipMap_INI" 0) != fValue
-		if eval iKeybind > 0
-			SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 0 iKeybind
+	if eval iOption == 3
+		if eval (iKeybind = Goo1.AuxVarGetFlt "*PipMap_INI" 0) != fValue
+			if eval iKeybind > 0
+				SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 0 iKeybind
+			endif
+			if eval fValue > 0
+				SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 fValue
+			endif
+			Goo1.AuxVarSetFlt "*PipMap_INI" fValue 0
 		endif
-		if eval fValue > 0
-			SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\InputHandler.gek") 1 fValue
-		endif
-		Goo1.AuxVarSetFlt "*PipMap_INI" fValue 0
+	elseif eval iOption == 7
+		Goo1.AuxVarSetFlt "*PipMap_Toggle" 0
+	elseif eval iOption == 12
+		SetImageSpaceModTrait HouseDecorationExplorer 62 ((Goo1.AuxVarGetFlt "*PipMap_INI" 8) * 70)
+	elseif eval iOption == 18
+		SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 0
+		SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 1 fValue 1
 	endif
 
 	aJSON = ar_Null

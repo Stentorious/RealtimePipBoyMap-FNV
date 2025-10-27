@@ -13,15 +13,15 @@
 			"listTitle": "$modDisplayName",
 			"pageTitle": "$modDisplayName",
 			"active": 1,
-			"columns": 1,
+			"columns": 2,
 			"enable": 1,
 			"options": {
 				"1": {
-					"title": "$General",
+					"title": "$Controls",
 					"enable": 1,
 					"type": 0
 				},
-				"2": {
+				"3": {
 					"title": "$Keybind",
 					"enable": 1,
 					"type": 3,
@@ -29,28 +29,49 @@
 					"vars": [ { "configINI": "General:iKeybind", "default": 34 } ],
 					"call": { "type": "file", "value": "RealtimePipBoyMap/MCMExtender/UpdateOption.gek" }
 				},
-				"3": {
+				"5": {
 					"title": "$ControllerSupport",
 					"type": 5,
 					"enable": 1,
 					"mouse": "$ControllerSupportMouse",
 					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 5, "configINI": "General:bControllerSupport", "default": 1 } ]
 				},
-				"4": {
+				"7": {
 					"title": "$ControlStyle",
 					"type": 6,
 					"enable": 1,
 					"mouse": "$ControlStyleMouse",
 					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 4, "configINI": "General:iControlStyle", "default": 0 } ],
 					"textOff": "$Hold",
-					"textOn": "$Toggle"
+					"textOn": "$Toggle",
+					"call": { "type": "file", "value": "RealtimePipBoyMap/MCMExtender/UpdateOption.gek" }
 				},
-				"5": {
+				"9": {
 					"title": "$ForceWalk",
 					"type": 5,
 					"enable": 1,
 					"mouse": "$ForceWalkMouse",
 					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 3, "configINI": "General:bForceWalk", "default": 0 } ]
+				},
+				"2": {
+					"title": "$Visuals",
+					"enable": 1,
+					"type": 0
+				},
+				"4": {
+					"title": "$ScanlineOpacity",
+					"type": 2,
+					"enable": 1,
+					"suffix": "%",
+					"mouse": "$ScanlineOpacityMouse",
+					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_ScanlineAlpha", "configINI": "General:iScanlineAlpha", "default": 50 } ],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1,
+						"valueMin": 0,
+						"valueMax": 100,
+						"suffix": "%"
+					}
 				},
 				"6": {
 					"title": "$ScreenBrightnessInterior",
@@ -67,7 +88,7 @@
 						"suffix": "x"
 					}
 				},
-				"7": {
+				"8": {
 					"title": "$ScreenBrightnessExterior",
 					"type": 2.5,
 					"enable": 1,
@@ -82,13 +103,13 @@
 						"suffix": "x"
 					}
 				},
-				"8": {
-					"title": "$ScanlineOpacity",
+				"10": {
+					"title": "$DepthOfFieldStrength",
 					"type": 2,
 					"enable": 1,
 					"suffix": "%",
-					"mouse": "$ScanlineOpacityMouse",
-					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_ScanlineAlpha", "configINI": "General:iScanlineAlpha", "default": 50 } ],
+					"mouse": "$DepthOfFieldStrengthMouse",
+					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 7, "configINI": "General:iDepthOfFieldStrength", "default": 0 } ],
 					"scale": {
 						"valueDecimal": 0,
 						"valueIncrement": 1,
@@ -96,31 +117,32 @@
 						"valueMax": 100,
 						"suffix": "%"
 					}
-				},
-				"9": {
-					"title": "$DepthOfField",
-					"type": 2,
-					"enable": 1,
-					"suffix": "%",
-					"mouse": "$DepthOfFieldMouse",
-					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 7, "configINI": "General:iDepthOfField", "default": 100 } ],
-					"scale": {
-						"valueDecimal": 0,
-						"valueIncrement": 1,
-						"valueMin": 0,
-						"valueMax": 100,
-						"suffix": "%"
-					}
-				},
-				"11": {
-					"title": "$Performance",
-					"enable": 2,
-					"type": 0
 				},
 				"12": {
+					"title": "$DepthOfFieldDistance",
+					"type": 2,
+					"enable": 1,
+					"suffix": "m",
+					"mouse": "$DepthOfFieldDistanceMouse",
+					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 8, "configINI": "General:iDepthOfFieldDistance", "default": 0 } ],
+					"scale": {
+						"valueDecimal": 0,
+						"valueIncrement": 1,
+						"valueMin": 0,
+						"valueMax": 100,
+						"suffix": "m"
+					},
+					"call": { "type": "file", "value": "RealtimePipBoyMap/MCMExtender/UpdateOption.gek" }
+				},
+				"16": {
+					"title": "$Performance",
+					"enable": 1,
+					"type": 0
+				},
+				"18": {
 					"title": "$RefreshInterval",
 					"type": 2,
-					"enable": 2,
+					"enable": 1,
 					"mouse": "$RefreshIntervalMouse",
 					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 6, "configINI": "General:iRefreshInterval", "default": 1 } ],
 					"scale": {
@@ -128,7 +150,8 @@
 						"valueIncrement": 1,
 						"valueMin": 1,
 						"valueMax": 5
-					}
+					},
+					"call": { "type": "file", "value": "RealtimePipBoyMap/MCMExtender/UpdateOption.gek" }
 				}
 			}
 		}
