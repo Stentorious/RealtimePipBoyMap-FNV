@@ -76,6 +76,7 @@ begin Function {}
 		; Start animation
 		Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0
 		Player.ActivateAnim "RealtimePipBoy\Check.kf" 1 0 1 1 0.4
+		Player.PlaySound3D NPCIdlePipBoyAccessUp
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 1
 
 		; Disable crosshair
@@ -107,6 +108,7 @@ begin Function {}
 
 		; Disable animation
 		Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0.4
+		Player.PlaySound3D NPCIdlePipBoyAccessDown
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 2
 		CallAfter 0.45 ({} => Goo1.AuxVarSetFlt "*PipMap_Anim" 3)
 
