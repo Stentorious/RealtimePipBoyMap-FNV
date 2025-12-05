@@ -3,11 +3,11 @@
 
 <visible> 1 </visible>
 <x>
-	<copy> -10000 </copy>
+	<copy> -15000 </copy>
 	<add src="me()" trait="_MapOffsetX" />
 </x>
 <y>
-	<copy> -10000 </copy>
+	<copy> -15000 </copy>
 	<add src="me()" trait="_MapOffsetY" />
 </y>
 <clipwindow> 0 </clipwindow>
