@@ -189,3 +189,8 @@ SetImageSpaceModTrait HouseDecorationExplorer 49 255	; Tint (Blue)
 SetImageSpaceModTrait HouseDecorationExplorer 50 0		; Tint (Alpha)
 SetImageSpaceModTrait HouseDecorationExplorer 61 0		; Depth of Field (Distance)
 SetImageSpaceModTrait HouseDecorationExplorer 62 ((Goo1.AuxVarGetFlt "*PipMap_INI" 8) * 70)
+
+; Init mesh cache
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 0
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 1
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 2

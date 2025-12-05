@@ -19,6 +19,14 @@ begin Function {iAnimID}
 		Player.SetMatrPropVal "pipboyscreen:0" 7 1
 	endif
 
+	; Reset knobs
+	if eval ModelHasBlock Player "TabKnob"
+		Player.SetNifRot "TabKnob" 0 0 (Goo1.AuxVarGetFlt "*PipMap_Cache" 0) 2 2
+	endif
+	if eval ModelHasBlock Player "ScrollKnob:0"
+		Player.SetNifRot "ScrollKnob:0" (Goo1.AuxVarGetFlt "*PipMap_Cache" 1) 0 0 2 2
+	endif
+
 	; Reset screen texture
 	Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" -1000 -1000 1 1
 
