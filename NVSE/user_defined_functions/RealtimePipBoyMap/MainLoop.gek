@@ -68,6 +68,9 @@ begin Function {}
 			return
 		endif
 
+		; Load Pip-Boy screen INI settings
+		Call (CompileScript "RealtimePipBoyMap\DetectPipBoyMesh.gek")
+
 		; Is third person
 		Goo1.AuxVarSetFlt "*PipMap_Cache" (eval IsPC1stPerson == 0) 2
 

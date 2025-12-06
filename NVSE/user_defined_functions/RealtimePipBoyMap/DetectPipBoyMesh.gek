@@ -1,0 +1,37 @@
+ref rPipboy
+string_var sINIPath
+
+begin Function {}
+
+	rPipboy = PlayerREF.GetEquippedObject 6
+	if eval (GetBipedModelPath 0 rPipboy) == "PIP-Boy2000MC\pipboyarm.nif"
+		sINIPath = "2000"
+	elseif ModelHasBlock rPipboy "RadDummy01" && ModelHasBlock rPipboy "GlassLight" == 0
+		sINIPath = "2000MkVI"
+	elseif ModelHasBlock rPipboy "PipBoyArm:0:111"
+		sINIPath = "3000Remastered"
+	elseif eval Goo1.AuxVarGetFlt "*PipMap_Support" 0
+		sINIPath = "2500A"
+	else
+		sINIPath = "3000"
+	endif
+
+	if eval Goo1.AuxVarGetStr "*PipMap_Cache" 3 == sINIPath
+		return
+	endif
+	Goo1.AuxVarSetStr "*PipMap_Cache" (sINIPath) 3
+
+	; Load config
+	sINIPath = sv_Construct "Stentorious\RealtimePipBoyMap\%z.ini" (sINIPath)
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" (GetINIFloat_Cached "PipBoy:fCardinalOffset" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (GetINIFloat_Cached "PipBoy:fMapOffsetX" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (GetINIFloat_Cached "PipBoy:fMapOffsetY" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (GetINIFloat_Cached "PipBoy:fSafeOffsetX" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (GetINIFloat_Cached "PipBoy:fSafeOffsetY" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (GetINIFloat_Cached "PipBoy:fSafeWidth" (sINIPath))
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (GetINIFloat_Cached "PipBoy:fSafeHeight" (sINIPath))
+	CloseFileSO (sINIPath) 0
+
+	sv_Destruct sINIPath
+
+end

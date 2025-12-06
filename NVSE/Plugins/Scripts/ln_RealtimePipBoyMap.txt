@@ -100,15 +100,17 @@ if eval GetINIFloat_Cached "Developer:bEditor" "Stentorious\RealtimePipBoyMap.in
 	SetOnKeyDownEventHandler (CompileScript "RealtimePipBoyMap\EditorInput.gek") 1 208	; Down
 endif
 
+; Init mesh cache
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 0
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 1
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 2
+Goo1.AuxVarSetFlt "*PipMap_Cache" 0 3
+
 ; Load Pip-Boy screen INI settings
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_CardinalOffset" (GetINIFloat_Cached "PipBoy:fCardinalOffset" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetX" (GetINIFloat_Cached "PipBoy:fMapOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_MapOffsetY" (GetINIFloat_Cached "PipBoy:fMapOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetX" (GetINIFloat_Cached "PipBoy:fSafeOffsetX" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeOffsetY" (GetINIFloat_Cached "PipBoy:fSafeOffsetY" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeWidth" (GetINIFloat_Cached "PipBoy:fSafeWidth" "Stentorious\RealtimePipBoyScreen.ini")
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeHeight" (GetINIFloat_Cached "PipBoy:fSafeHeight" "Stentorious\RealtimePipBoyScreen.ini")
-CloseFileSO "Stentorious\RealtimePipBoyScreen.ini" 0
+if eval FileExists "Pip-Boy 2500A Readme.txt"
+	Goo1.AuxVarSetFlt "*PipMap_Support" 1 0
+endif
+Call (CompileScript "RealtimePipBoyMap\DetectPipBoyMesh.gek")
 
 ; Update map
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_WidthRatio" 1.4
@@ -189,8 +191,3 @@ SetImageSpaceModTrait HouseDecorationExplorer 49 255	; Tint (Blue)
 SetImageSpaceModTrait HouseDecorationExplorer 50 0		; Tint (Alpha)
 SetImageSpaceModTrait HouseDecorationExplorer 61 0		; Depth of Field (Distance)
 SetImageSpaceModTrait HouseDecorationExplorer 62 ((Goo1.AuxVarGetFlt "*PipMap_INI" 8) * 70)
-
-; Init mesh cache
-Goo1.AuxVarSetFlt "*PipMap_Cache" 0 0
-Goo1.AuxVarSetFlt "*PipMap_Cache" 0 1
-Goo1.AuxVarSetFlt "*PipMap_Cache" 0 2
