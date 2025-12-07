@@ -46,6 +46,7 @@ begin Function {}
 
 		; Finish animation
 		Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+		Goo1.AuxVarSetFlt "*PipMap_Menu" 0
 
 		; Disable minimap updates
 		SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
@@ -62,11 +63,26 @@ begin Function {}
 		RIMOD HouseDecorationExplorer
 		SetImageSpaceModTrait HouseDecorationExplorer 60 0
 
+		DispatchEventAlt "RealtimePipMapClose"
+
 	; Init animation start
 	elseif eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 2 && Goo1.AuxVarGetFlt "*PipMap_Anim" > -1 && ((IsKeyPressed (Goo1.AuxVarGetFlt "*PipMap_INI" 0) 2 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0) || Goo1.AuxVarGetFlt "*PipMap_Toggle" || (Goo1.AuxVarGetFlt "*PipMap_INI" 5 && Goo1.AuxVarGetFlt "*PipMap_INI" 4 == 0 && GetController && IsControlPressed 27 && IsControlPressed 14) || Goo1.AuxVarGetFlt "*PipMap_Editor")
+		if eval Goo1.AuxVarGetFlt "*PipMap_Menu"
+			DC 4
+			DC 6
+			DC 7
+			Goo1.AuxVarSetFlt "*PipMap_Menu" 0
+		endif
 		if eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
 			return
 		endif
+
+		array_var aPipboy = Player.GetChildBlocks "Bip01 L ForeTwist" 2
+		if eval (Ar_Size aPipboy) < 1 || Player.GetNifBlockFlag (aPipboy[0]) 0 2
+			aPipboy = ar_Null
+		    return
+		endif
+		aPipboy = ar_Null
 
 		; Load Pip-Boy screen INI settings
 		Call (CompileScript "RealtimePipBoyMap\DetectPipBoyMesh.gek")
@@ -81,9 +97,11 @@ begin Function {}
 		DisablePlayerControlsAltEx (30100 + (2048 * (Goo1.AuxVarGetFlt "*PipMap_INI" 3)))
 
 		; Update model
-		ToggleNthPipboyLight 0 0
-		ToggleNthPipboyLight 1 0
-		ToggleNthPipboyLight 2 1
+		if eval ModelHasBlock Player "StatsGlow" && ModelHasBlock Player "ItemsGlow" && ModelHasBlock Player "DataGlow"
+			ToggleNthPipboyLight 0 0
+			ToggleNthPipboyLight 1 0
+			ToggleNthPipboyLight 2 1
+		endif
 
 		if eval ModelHasBlock Player "RadNeedle"
 			Player.GetNifRotAlt "RadNeedle" (fRotX) (fRotY) (fRotZ) 2 2
@@ -147,6 +165,7 @@ begin Function {}
 		Goo1.AuxVarSetFlt "*PipMap_DoF" 1
 		AuxTimerStart "*PipMap_DoF" 0.5 270
 
+		DispatchEventAlt "RealtimePipMapOpen"
 
 	; Init animation end
 	elseif Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" && Player.GetAnimCurrentTime "RealtimePipBoy\Check.kf" == 2

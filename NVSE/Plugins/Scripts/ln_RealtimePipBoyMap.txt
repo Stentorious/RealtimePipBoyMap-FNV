@@ -152,6 +152,9 @@ SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1003
 SetOnMenuCloseEventHandler (CompileScript "RealtimePipBoyMap\PipBoyClose.gek") 1 1023
 
+; Toggle menu controls
+SetOnMenuOpenEventHandler (CompileScript "RealtimePipBoyMap\ToggleMenuControls.gek") 1
+
 ; Update screen on Chameleon effect change
 SetOnActorValueChangeEventHandler 1 (begin function {int iAVCode, float fPrevious, float fNew}
 	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 0

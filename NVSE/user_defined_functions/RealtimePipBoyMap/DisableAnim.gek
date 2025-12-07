@@ -41,6 +41,7 @@ begin Function {iAnimID}
 
 	; Finish animation
 	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
+	Goo1.AuxVarSetFlt "*PipMap_Menu" 0
 
 	; Enable crosshair
 	SetUIFloatAlt "HUDMainMenu\JDC\_visible_stent" 1
@@ -56,5 +57,7 @@ begin Function {iAnimID}
 	AuxTimerStop "*PipMap_DoF"
 	RIMOD HouseDecorationExplorer
 	SetImageSpaceModTrait HouseDecorationExplorer 60 0
+
+	DispatchEventAlt "RealtimePipMapClose"
 
 end
