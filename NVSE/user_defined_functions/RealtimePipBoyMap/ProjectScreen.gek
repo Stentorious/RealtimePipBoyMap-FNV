@@ -1,5 +1,5 @@
 begin Function {}
 	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" > 0
-		Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" -15000 -15000 1024 768
+		Player.ProjectUITile "HUDMainMenu\ModernMinimap" "pipboyscreen:0" -15000 -15000 768 576
 	endif
 end

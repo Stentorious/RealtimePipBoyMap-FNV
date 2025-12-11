@@ -7,6 +7,8 @@ begin Function {iAnimID}
 	endif
 	Player.DeactivateAnim "RealtimePipBoy\Check.kf" 0
 
+	SGMLC (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 0
+
 	; Update model
 	Player.SetMatrPropVal "pipboyscreen:0" 8 1
 	if eval TogglePipBoyLight
@@ -52,6 +54,9 @@ begin Function {iAnimID}
 
 	; "Pip-Boy Screen Always On" compatibility
 	Player.AuxVarSetFlt "*_PBSAODisable" 0
+
+	; B42 Inertia override
+	Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 	; Remove DoF
 	AuxTimerStop "*PipMap_DoF"

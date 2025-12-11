@@ -7,6 +7,8 @@ begin Function {}
 	; Finish animation
 	if eval (Goo1.AuxVarGetFlt "*PipMap_Anim" == 3 || Goo1.AuxVarGetFlt "*PipMap_Anim" == 1) && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" == 0
 
+		SGMLC (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 0
+
 		; Update model
 		Player.SetMatrPropVal "pipboyscreen:0" 8 1
 		if eval TogglePipBoyLight
@@ -57,6 +59,9 @@ begin Function {}
 
 		; "Pip-Boy Screen Always On" compatibility
 		Player.AuxVarSetFlt "*_PBSAODisable" 0
+
+		; B42 Inertia override
+		Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 		; Remove DoF
 		AuxTimerStop "*PipMap_DoF"
@@ -160,12 +165,17 @@ begin Function {}
 		; "Pip-Boy Screen Always On" compatibility
 		Player.AuxVarSetFlt "*_PBSAODisable" 1
 
+		; B42 Inertia override
+		Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 1
+
 		; Transition DoF in
 		IMOD HouseDecorationExplorer
 		Goo1.AuxVarSetFlt "*PipMap_DoF" 1
 		AuxTimerStart "*PipMap_DoF" 0.5 270
 
 		DispatchEventAlt "RealtimePipMapOpen"
+
+		SGMLC (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 1 (Goo1.AuxVarGetFlt "*PipMap_INI" 6) 9
 
 	; Init animation end
 	elseif Goo1.AuxVarGetFlt "*PipMap_Anim" == 1 && Player.IsAnimSequencePlaying "RealtimePipBoy\Check.kf" && Player.GetAnimCurrentTime "RealtimePipBoy\Check.kf" == 2

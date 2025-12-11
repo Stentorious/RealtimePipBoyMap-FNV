@@ -13,8 +13,8 @@
 		<sub src="parent()" trait="_MapOffsetY" />
 	</y>
 
-	<_DefaultWidth> 1024 </_DefaultWidth>
-	<_DefaultHeight> 768 </_DefaultHeight>
+	<_DefaultWidth> 768 </_DefaultWidth>
+	<_DefaultHeight> 576 </_DefaultHeight>
 
 	<image name="OuterTop">
 		<x> 0 </x>

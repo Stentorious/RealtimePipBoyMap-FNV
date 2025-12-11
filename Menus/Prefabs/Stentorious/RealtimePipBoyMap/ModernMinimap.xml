@@ -28,7 +28,7 @@
 	<copy src="me()" trait="_SafeOffsetY" />
 	<sub src="me()" trait="_MapOffsetY" />
 	<sub src="me()" trait="_SafeHeight" />
-	<add> 768 </add>
+	<add> 576 </add>
 </_SafeZoneBottom>
 <_SafeZoneLeft>
 	<copy src="me()" trait="_SafeOffsetX" />
@@ -39,7 +39,7 @@
 	<copy src="me()" trait="_SafeOffsetX" />
 	<sub src="me()" trait="_MapOffsetX" />
 	<sub src="me()" trait="_SafeWidth" />
-	<add> 1024 </add>
+	<add> 768 </add>
 </_SafeZoneRight>
 
 <image name="Scanlines">
@@ -49,11 +49,11 @@
 		<mul> 2.55 </mul>
 	</alpha>
 	<depth> 2000 </depth>
-	<x> -256 </x>
-	<y> -256 </y>
+	<x> -192 </x>
+	<y> -192 </y>
 	<zoom> -1 </zoom>
-	<width> 1024 </width>
-	<height> 1024 </height>
+	<width> 768 </width>
+	<height> 768 </height>
 	<systemcolor> &pipboy; </systemcolor>
 	<brightness> <copy src="parent()" trait="_ScanlineBrightness" /> </brightness>
 	<filename> Interface\Stentorious\ModernMinimap\Scanlines.dds </filename>
@@ -106,13 +106,13 @@
 	<image name="Top">
 		<alpha> 204 </alpha>
 		<depth> 501 </depth>
-		<x> -256 </x>
+		<x> -192 </x>
 		<y>
 			<copy src="grandparent()" trait="_SafeZoneTop" />
 			<sub src="parent()" trait="_Offset" />
 		</y>
-		<width> 1024 </width>
-		<height> 48 </height>
+		<width> 768 </width>
+		<height> 42 </height>
 		<systemcolor> <copy src="parent()" trait="_systemcolor" /> </systemcolor>
 		<red> <copy src="parent()" trait="_red" /> </red>
 		<green> <copy src="parent()" trait="_green" /> </green>
@@ -124,7 +124,7 @@
 	<image name="Bottom">
 		<alpha> 204 </alpha>
 		<depth> 501 </depth>
-		<x> -256 </x>
+		<x> -192 </x>
 		<y>
 			<copy src="grandparent()" trait="_SafeZoneBottom" />
 			<add src="parent()" trait="_Offset" />

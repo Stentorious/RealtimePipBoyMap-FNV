@@ -7,6 +7,7 @@ Goo1.AuxVarSetFlt "*PipMap_Editor" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Editor\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_ToggleUpdate" 0
 Player.AuxVarSetFlt "*_PBSAODisable" 0
+Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 ; Pip-Boy reset timer
 SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
@@ -116,29 +117,28 @@ Call (CompileScript "RealtimePipBoyMap\DetectPipBoyMesh.gek")
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_WidthRatio" 1.4
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_RenderUpdateX" 0.75
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\_RenderUpdateY" 0.75
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\x" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneLeft") + 25)
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\y" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneTop") + 25)
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\x" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneLeft") + 18)
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\InfoText\y" ((GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneTop") + 18)
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VL\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_VR\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HT\visible" 0
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Headline_HB\visible" 0
 SetUIFloatGradual "HUDMainMenu\ModernMinimap\_ScanlineBrightness" 204 255 2.3 2
-SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\height" 128
+SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\height" 96
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\y" 0
-SetUIFloatGradual "HUDMainMenu\ModernMinimap\Scan\y" -1024 1536 7.5 3
+SetUIFloatGradual "HUDMainMenu\ModernMinimap\Scan\y" -768 1152 7.5 3
 SetUIFloatAlt "HUDMainMenu\ModernMinimap\Scan\brightness" 0
 SetUIFloatGradual "HUDMainMenu\ModernMinimap\Scan\brightness" 153 255 2 2
 SetUIStringAlt "HUDMainMenu\ModernMinimap\Scan\filename" "Interface\Stentorious\ModernMinimap\Distortion.dds"
 CallAfter 0 (begin Function {}
-	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale" 2
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_TileScale" 1.5
 	SetUIFloatAlt "HUDMainMenu\ModernMinimap\Background\alpha" 153
-	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_BackgroundPad" 256
-	SetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\x" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneRight" - (GetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\width") - 25)
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\_BackgroundPad" 192
+	SetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\x" (GetUIFloatAlt "HUDMainMenu\ModernMinimap\_SafeZoneRight" - (GetUIFloatAlt "HUDMainMenu\ModernMinimap\RadiationIcon\width") - 18)
 end)
 
 ; Main loops
 SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\MainLoop.gek") 1 10 1
-SetGameMainLoopCallback (CompileScript "RealtimePipBoyMap\ProjectScreen.gek") 1 (GetMaxOf 0 (GetINIFloat_Cached "General:iRefreshInterval" "Stentorious\RealtimePipBoyMap.ini" 1)) 1
 
 CloseFileSO "Stentorious\RealtimePipBoyMap.ini" 0
 
