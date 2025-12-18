@@ -11,12 +11,10 @@ begin Function {iAnimID}
 
 	; Update model
 	Player.SetMatrPropVal "pipboyscreen:0" 8 1
-	if eval TogglePipBoyLight
-		Player.SetMatrPropVal "PipboyLightEffect:0" 7 1
-		Player.SetMatrPropVal "PipboyLightEffect:0_TNW" 7 1
-		Player.SetMatrPropVal "PipboyLightEffect:1_N" 7 1
-		Player.SetMatrPropVal "PipboyLightEffect:1_TNW" 7 1
-	endif
+	Player.SetMatrPropVal "PipboyLightEffect:0" 7 1
+	Player.SetMatrPropVal "PipboyLightEffect:0_TNW" 7 1
+	Player.SetMatrPropVal "PipboyLightEffect:1_N" 7 1
+	Player.SetMatrPropVal "PipboyLightEffect:1_TNW" 7 1
 
 	; Reset block for chameleon effect
 	if eval Player.GetAV Chameleon > 0
