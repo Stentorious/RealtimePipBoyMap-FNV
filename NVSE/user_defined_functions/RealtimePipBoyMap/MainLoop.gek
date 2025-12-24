@@ -83,7 +83,7 @@ begin Function {}
 		array_var aPipboy = Player.GetChildBlocks "Bip01 L ForeTwist" 2
 		if eval (Ar_Size aPipboy) < 1 || Player.GetNifBlockFlag (aPipboy[0]) 0 2
 			aPipboy = ar_Null
-		    return
+			return
 		endif
 		aPipboy = ar_Null
 
