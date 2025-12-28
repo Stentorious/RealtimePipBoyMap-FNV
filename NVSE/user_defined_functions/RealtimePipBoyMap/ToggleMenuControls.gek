@@ -1,9 +1,11 @@
 begin Function {int iMenuID}
-	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 1 || iMenuID == 1009
+	if eval Goo1.AuxVarGetFlt "*PipMap_Anim" < 1
 		return
 	endif
 	EC 4
 	EC 6
 	EC 7
-	Goo1.AuxVarSetFlt "*PipMap_Menu" 1
+	if eval iMenuID != 1009
+		Goo1.AuxVarSetFlt "*PipMap_Menu" 1
+	endif
 end
