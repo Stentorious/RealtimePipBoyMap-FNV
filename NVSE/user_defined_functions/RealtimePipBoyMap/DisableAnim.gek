@@ -11,7 +11,8 @@ begin Function {iAnimID}
 
 	; Update model
 	Player.SetMatrPropVal "pipboyscreen:0" 8 1
-	Player.SetMatrPropVal "PipboyLightEffect:0" 7 1
+	Player.SetNifBlockFlag "PipboyLightEffect:0" 0 0 1
+	Player.SetNifBlockFlag "PipboyLightEffect:0" 0 0 2
 	Player.SetMatrPropVal "PipboyLightEffect:0_TNW" 7 1
 	Player.SetMatrPropVal "PipboyLightEffect:1_N" 7 1
 	Player.SetMatrPropVal "PipboyLightEffect:1_TNW" 7 1
