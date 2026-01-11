@@ -43,4 +43,7 @@ Configurable via [MCM Extender](https://www.nexusmods.com/newvegas/mods/93642):
 - [MCM Extender](https://www.nexusmods.com/newvegas/mods/93642)
 
 ## Installation
-Installs like any other mod, manually or using a mod manager.
+- Installs like any other mod, manually or using a mod manager.
+
+## Support The Author
+[![Patreon Donation](https://i.imgur.com/TnQwVb6.png)](https://www.patreon.com/stentorious)
