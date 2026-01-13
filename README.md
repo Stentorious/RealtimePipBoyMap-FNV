@@ -17,7 +17,7 @@
 
 ### Controls
 - Keyboard: G
-- Controller: Grab + B
+- Controller: Grab + Pip-Boy Button
 - See [Modern Minimap](https://www.nexusmods.com/newvegas/mods/90574) mod page for full Keybind list.
 
 ## Configuration
