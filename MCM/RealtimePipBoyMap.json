@@ -53,6 +53,18 @@
 					"mouse": "$ForceWalkMouse",
 					"vars": [ { "form": "Goo1", "auxVar": "*PipMap_INI", "key": 3, "configINI": "General:bForceWalk", "default": 0 } ]
 				},
+				"13": {
+					"title": "$Features",
+					"enable": 1,
+					"type": 0
+				},
+				"15": {
+					"title": "$DetectionIndicator",
+					"type": 5,
+					"enable": 1,
+					"mouse": "$DetectionIndicatorMouse",
+					"vars": [ { "uiTrait": "HUDMainMenu/ModernMinimap/_DetectionIndicator", "configINI": "General:bDetectionIndicator", "default": 1 } ]
+				},
 				"2": {
 					"title": "$Visuals",
 					"enable": 1,

@@ -1,5 +1,6 @@
 <_ScanlineAlpha> 0 </_ScanlineAlpha>
 <_ScanlineBrightness> 0 </_ScanlineBrightness>
+<_DetectionIndicator> 0 </_DetectionIndicator>
 
 <visible> 1 </visible>
 <x>
@@ -65,6 +66,7 @@
 		<copy src="parent()" trait="_systemcolor" />
 		<eq> 2 </eq>
 		<or src="parent()" trait="_PlrSneak" />
+		<and src="parent()" trait="_DetectionIndicator" />
 	</visible>
 
 	<_systemcolor_0> &pipboy; </_systemcolor_0>
