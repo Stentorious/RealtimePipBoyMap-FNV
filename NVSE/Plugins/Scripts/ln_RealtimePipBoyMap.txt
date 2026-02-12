@@ -10,7 +10,7 @@ Player.AuxVarSetFlt "*_PBSAODisable" 0
 Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 ; Pip-Boy reset timer
-SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
+Goo1.SetOnTimerStopHandler 1 (begin Function {string_var sName, ref rOwner}
 	sv_Destruct sName
 	Goo1.AuxVarSetFlt "*PipMap_Anim" 0
 end) "*PipMap_Reset"
@@ -18,7 +18,7 @@ end) "*PipMap_Reset"
 ; DoF update
 RIMOD HouseDecorationExplorer
 SetImageSpaceModTrait HouseDecorationExplorer 60 0
-SetOnTimerUpdateHandler 1 (CompileScript "RealtimePipBoyMap\AuxTimerUpdate.gek") "*PipMap_DoF"
+Goo1.SetOnTimerUpdateHandler 1 (CompileScript "RealtimePipBoyMap\AuxTimerUpdate.gek") "*PipMap_DoF"
 
 ; On game restart
 if eval Goo1.AuxVarGetFlt "*PipMap_Init"

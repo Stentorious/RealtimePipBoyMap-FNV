@@ -58,7 +58,7 @@ begin Function {iAnimID}
 	Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 	; Remove DoF
-	AuxTimerStop "*PipMap_DoF"
+	Goo1.AuxTimerStop "*PipMap_DoF"
 	RIMOD HouseDecorationExplorer
 	SetImageSpaceModTrait HouseDecorationExplorer 60 0
 

@@ -63,7 +63,7 @@ begin Function {}
 		Player.AuxVarSetFlt "*_B42InertiaHolsterOverride" 0
 
 		; Remove DoF
-		AuxTimerStop "*PipMap_DoF"
+		Goo1.AuxTimerStop "*PipMap_DoF"
 		RIMOD HouseDecorationExplorer
 		SetImageSpaceModTrait HouseDecorationExplorer 60 0
 
@@ -171,7 +171,7 @@ begin Function {}
 		; Transition DoF in
 		IMOD HouseDecorationExplorer
 		Goo1.AuxVarSetFlt "*PipMap_DoF" 1
-		AuxTimerStart "*PipMap_DoF" 0.5 270
+		Goo1.AuxTimerStart "*PipMap_DoF" 0.5 270
 
 		DispatchEventAlt "RealtimePipMapOpen"
 
@@ -191,7 +191,7 @@ begin Function {}
 
 		; Transition DoF out
 		Goo1.AuxVarSetFlt "*PipMap_DoF" 0
-		AuxTimerStart "*PipMap_DoF" 0.5 270
+		Goo1.AuxTimerStart "*PipMap_DoF" 0.5 270
 
 	endif
 
