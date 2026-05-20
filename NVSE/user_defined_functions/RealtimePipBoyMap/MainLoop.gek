@@ -77,7 +77,10 @@ begin Function {}
 			DC 7
 			Goo1.AuxVarSetFlt "*PipMap_Menu" 0
 		endif
-		if eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
+
+		if eval Goo1.AuxVarGetFlt "*PipMap_Anim" == 1
+			return
+		elseif eval MenuMode || ModelHasBlock Player "pipboyscreen:0" == 0 || Player.IsIdlePlaying || Player.GetAnimAction > -1 || Player.GetIsRagdolled || Player.GetDead || Player.IsBlockingOrAiming || GetPipBoyMode != 0 || GSIV 0 > 0 || IsInKillCam || GetPlayerControlsDisabled 1 0 0 1 1 0 0
 			return
 		endif
 
