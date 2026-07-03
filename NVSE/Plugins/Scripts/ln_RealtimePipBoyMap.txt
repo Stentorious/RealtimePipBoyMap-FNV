@@ -28,35 +28,11 @@ Goo1.AuxVarSetFlt "*PipMap_Init" 1
 
 ; Check for requirements
 if eval FileExists "NVSE\CompileScript\ModernMinimap\MainLoop.gek" == 0
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest Modern Minimap - ESPless."
-	return
-endif
-if eval GetNVSEVersionFull < 6.40
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall xNVSE 6.4.0+."
-	return
-endif
-if GetPluginVersion "JohnnyGuitarNVSE" < 360
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest JohnnyGuitar NVSE plugin."
-	return
-endif
-if GetPluginVersion "ShowOffNVSE Plugin" < 165
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest ShowOff NVSE plugin."
-	return
-endif
-if GetPluginVersion "UI Organizer Plugin" < 230
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest User Interface Organizer plugin."
-	return
-endif
-if GetPluginVersion "kNVSE" < 37
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest kNVSE plugin."
-	return
-endif
-if GetPluginVersion "lStewieAl's Tweaks" < 906
-	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%rInstall latest lStewieAl's Tweaks."
+	MessageBoxEx "Realtime Pip-Boy Map missing requirement!%r%rInstall latest Modern Minimap - ESPless."
 	return
 endif
 if GetPluginVersion "Depth Resolve" > -1 && GetPluginVersion "Depth Resolve" < 131
-	MessageBoxEx "WARNING! Memory leak detected!%rInstall latest Depth Resolve - NVSE plugin."
+	MessageBoxEx "WARNING! Memory leak detected!%r%rInstall latest Depth Resolve - NVSE plugin."
 	return
 endif
 
