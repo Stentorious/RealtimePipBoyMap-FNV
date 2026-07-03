@@ -1,7 +1,5 @@
 # Realtime Pip-Boy Map
-<p align="left">
-	<img height="350px" src="https://staticdelivery.nexusmods.com/mods/130/images/92277/92277-1761345928-49360207.png">
-</p>
+<p align="left"> <img height="350px" src="https://staticdelivery.nexusmods.com/mods/130/images/92277/92277-1761345928-49360207.png"> </p>
 
 ## Overview
 - Adds a feature rich realtime map to the Pip-Boy viewable at any time.
